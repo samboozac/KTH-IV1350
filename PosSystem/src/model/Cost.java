@@ -6,6 +6,6 @@ public class Cost {
     private double discount;
     private Tax tax;
     public Cost(SaleRegister saleRegister){
-        this.runningTotal = saleRegister
+
     }
 }

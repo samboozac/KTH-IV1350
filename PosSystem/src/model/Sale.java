@@ -13,6 +13,6 @@ public class Sale {
 
     public Sale(){}
     public double pay(double amount){return 1.0;}
-    public SaleDTO addItem(ItemDTO itemDTO, int quantity){}
+    public SaleDTO addItem(ItemDTO itemDTO, int quantity){return saleDTO;}
     public void publicInitialSalesInto(){}
 }
