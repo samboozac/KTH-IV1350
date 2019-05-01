@@ -1,7 +1,7 @@
 package integration;
 
 import model.Cost;
-import model.SaleRegister;
+import model.AddedItems;
 import java.time.LocalDateTime;
 
 public final class SaleDTO {
@@ -9,9 +9,9 @@ public final class SaleDTO {
     private final LocalDateTime time;
     private final Cost cost;
     private final ItemDTO lastAddedItem;
-    private final SaleRegister saleRegister;
+    private final AddedItems saleRegister;
 
-    public SaleDTO(String cashier, Cost cost, ItemDTO lastAddedItem, SaleRegister saleRegister) {
+    public SaleDTO(String cashier, Cost cost, ItemDTO lastAddedItem, AddedItems saleRegister) {
         this.cashier = cashier;
         this.cost = cost;
         this.lastAddedItem = lastAddedItem;
@@ -22,6 +22,6 @@ public final class SaleDTO {
     public String getCashier() {return cashier;}
     public LocalDateTime getTime() {return time;}
     public Cost getCost() {return cost;}
-    public SaleRegister getCompletedSalesLog(){return saleRegister;}
+    public AddedItems getCompletedSalesLog(){return saleRegister;}
 
 }

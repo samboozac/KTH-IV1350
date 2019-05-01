@@ -1,9 +1,13 @@
 package util;
 
 public class ItemIdentifier {
-    private String itemString;
+    private String itemIdentifier;
 
-    public ItemIdentifier() {
-        this.itemString = itemS
+    public ItemIdentifier(String itemIdentifier) {
+        this.itemIdentifier = itemIdentifier;
+    }
+
+    public String getItemIdentifier() {
+        return itemIdentifier;
     }
 }

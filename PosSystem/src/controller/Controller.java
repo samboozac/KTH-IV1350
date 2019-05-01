@@ -1,14 +1,21 @@
 package controller;
 // controller.getDiscount
+import integration.DbHandler;
+import integration.ItemDTO;
 import integration.SaleDTO;
 import model.Sale;
+import util.ItemIdentifier;
 
 public class Controller  {
-    private SaleDTO saleDTO;
     private Sale sale;
-    public Controller() {}
-    public void addItem(String itemIdentifier, int quantity) {
+    private DbHandler dbHandler;
+    private ItemDTO itemDTO;
 
+    public Controller() {
+        dbHandler = new DbHandler();
+    }
+    public void addItem(ItemIdentifier itemIdentifier, int quantity) {
+        itemDTO = dbHandler.getItemDTO(itemIdentifier);
     }
     public double pay(double amount) {
         return 1.0;

@@ -1,11 +1,12 @@
 package model;
 
 public class Cost {
-    private double runningTotal;
-    private double totalCost;
-    private double discount;
-    private Tax tax;
-    public Cost(SaleRegister saleRegister){
+    private double cost;
+    public Cost(double cost, int quantity){
+        this.cost = cost*quantity;
+    }
 
+    public double getCost() {
+        return cost;
     }
 }
