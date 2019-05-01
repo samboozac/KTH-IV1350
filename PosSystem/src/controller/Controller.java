@@ -35,5 +35,6 @@ public class Controller  {
 
     public void updateSystems(){
         dbHandler.registerSalesInformaiton(saleDTO);
+        
     }
 }
