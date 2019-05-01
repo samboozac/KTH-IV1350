@@ -9,9 +9,17 @@ public class View {
     private Controller controller;
     private double change;
 
+    /**
+     *
+     * @param controller
+     */
     public View(Controller controller){
         this.controller = controller;
     }
+
+    /**
+     * 
+     */
     public void sampleExecution() {
         controller.startSale();
         controller.addItem(new ItemIdentifier("1231231"), 2);

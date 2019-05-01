@@ -8,9 +8,17 @@ import java.util.HashMap;
 
 public class DiscountRegistry {
     private HashMap<CustomerId, DiscountRule> personalDiscountList = new HashMap<>();
+
+    /**
+     *
+     */
     public DiscountRegistry(){
         addPersonalDiscounts();
     }
+
+    /**
+     *
+     */
     private void addPersonalDiscounts() {
         personalDiscountList.put(new CustomerId("1293192932"), new DiscountRule(20.0));
         personalDiscountList.put(new CustomerId("1293192432"), new DiscountRule(15.0));
@@ -18,6 +26,10 @@ public class DiscountRegistry {
         personalDiscountList.put(new CustomerId("1233192932"), new DiscountRule(30.0));
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<CustomerId, DiscountRule> getPersonalDiscountList() {
         return personalDiscountList;
     }

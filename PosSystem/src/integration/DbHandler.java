@@ -1,5 +1,4 @@
 package integration;
-
 import util.DiscountRule;
 import util.ItemIdentifier;
 
@@ -12,6 +11,11 @@ public class DbHandler {
         discountRegistry = new DiscountRegistry();
     }
 
+    /**
+     *
+     * @param itemIdentifier
+     * @return
+     */
     public ItemDTO getItemDTO(ItemIdentifier itemIdentifier) {
         if (itemRegistry.getItemList().containsKey(itemIdentifier)) {
             return itemRegistry.getItemList().get(itemIdentifier);
@@ -21,6 +25,11 @@ public class DbHandler {
         }
     }
 
+    /**
+     *
+     * @param customerId
+     * @return
+     */
     public DiscountRule getDiscountRules(String customerId){
         if(discountRegistry.getPersonalDiscountList().containsKey(customerId)){
             return discountRegistry.getPersonalDiscountList().get(customerId);
@@ -30,6 +39,10 @@ public class DbHandler {
         }
     }
 
+    /**
+     *
+     * @param saleDTO
+     */
     public void registerSalesInformation(SaleDTO saleDTO){
         System.out.println("Sends file to external system");
     }

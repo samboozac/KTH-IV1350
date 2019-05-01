@@ -26,7 +26,7 @@ public class Controller  {
         return saleDTO = sale.addItem(itemDTO, quantity);
     }
     public void enterDiscount(String customerId) {
-
+        sale.applyDiscount(dbHandler.getDiscountRules(customerId));
     }
 
     public double pay(double amount) {
@@ -34,7 +34,6 @@ public class Controller  {
     }
 
     public void updateSystems(){
-        dbHandler.registerSalesInformaiton(saleDTO);
-        
+        dbHandler.registerSalesInformation(saleDTO);
     }
 }
