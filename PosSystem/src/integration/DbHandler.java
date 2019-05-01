@@ -30,7 +30,7 @@ public class DbHandler {
         }
     }
 
-    public void registerSalesInformaiton(SaleDTO saleDTO){
+    public void registerSalesInformation(SaleDTO saleDTO){
         System.out.println("Sends file to external system");
     }
 }
