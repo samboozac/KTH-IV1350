@@ -1,5 +1,7 @@
 package util;
 
+import integration.ItemDTO;
+
 public class ItemIdentifier {
     private String itemIdentifier;
 
@@ -11,11 +13,19 @@ public class ItemIdentifier {
         this.itemIdentifier = itemIdentifier;
     }
 
+    public boolean equals(ItemIdentifier itemIdentifier){
+        if(this.itemIdentifier.equals(itemIdentifier.getValue())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      *
      * @return
      */
-    public String getItemIdentifier() {
+    public String getValue() {
         return itemIdentifier;
     }
 }

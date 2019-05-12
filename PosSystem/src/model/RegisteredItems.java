@@ -1,18 +1,18 @@
 package model;
 
 import integration.ItemDTO;
+import util.Amount;
 import util.RunningTotal;
 
 import java.util.HashMap;
 
-public class AddedItems {
+public class RegisteredItems {
     private HashMap<ItemDTO, Integer> register;
-    private Cost runningTotal;
 
     /**
      *
      */
-    public AddedItems(){
+    public RegisteredItems(){
         register = new HashMap<>();
     }
 
@@ -30,16 +30,5 @@ public class AddedItems {
      *
      * @return
      */
-    public HashMap<ItemDTO, Integer> getAddedItems() { return register;}
-
-    /**
-     *
-     * @return
-     */
-    public Cost getRunningTotal(){
-        for (HashMap.Entry<ItemDTO, Integer> it : register.entrySet()) {
-            runningTotal = new Cost(it.getKey().getPrice().getCost(), it.getValue());
-        }
-        return runningTotal;
-    }
+    public HashMap<ItemDTO, Integer> getMap() { return register;}
 }

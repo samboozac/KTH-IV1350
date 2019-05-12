@@ -1,14 +1,20 @@
 package integration;
-import util.DiscountRule;
+import model.RegisteredItems;
 import util.ItemIdentifier;
 
-public class DbHandler {
-    private ItemRegistry itemRegistry;
-    private DiscountRegistry discountRegistry;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-    public DbHandler(){
-        itemRegistry = new ItemRegistry();
-        discountRegistry = new DiscountRegistry();
+public class DbHandler {
+    private ExternalInventory externalInventory;
+    private ExternalAccounting externalAccounting;
+    private RegisteredItems registeredItems;
+
+    public DbHandler(ExternalInventory externalInventory, ExternalAccounting externalAccounting){
+        this.externalInventory = externalInventory;
+        this.externalAccounting = externalAccounting;
+        registeredItems = new RegisteredItems();
     }
 
     /**
@@ -17,26 +23,16 @@ public class DbHandler {
      * @return
      */
     public ItemDTO getItemDTO(ItemIdentifier itemIdentifier) {
-        if (itemRegistry.getItemList().containsKey(itemIdentifier)) {
-            return itemRegistry.getItemList().get(itemIdentifier);
-        } else {
-            System.out.println("Item does no exist!");
-            return null;
+        HashMap<ItemIdentifier, ItemDTO> map = externalInventory.getMap();
+        Iterator<Map.Entry<ItemIdentifier, ItemDTO>> entrySet = map.entrySet().iterator();
+        while (entrySet.hasNext()) {
+            Map.Entry<ItemIdentifier, ItemDTO> pair = entrySet.next();
+            if(pair.getKey().equals(itemIdentifier)) {
+                //System.out.println(pair.getValue() + "exists!");
+                return pair.getValue();
+            }
         }
-    }
-
-    /**
-     *
-     * @param customerId
-     * @return
-     */
-    public DiscountRule getDiscountRules(String customerId){
-        if(discountRegistry.getPersonalDiscountList().containsKey(customerId)){
-            return discountRegistry.getPersonalDiscountList().get(customerId);
-        } else {
-            System.out.println("Customer has no discount!");
-            return null;
-        }
+        return null;
     }
 
     /**

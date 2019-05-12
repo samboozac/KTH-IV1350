@@ -1,32 +1,23 @@
 package integration;
 
-import model.Cost;
-import model.AddedItems;
+import model.RegisteredItems;
+import util.Amount;
+
 import java.time.LocalDateTime;
 
 public final class SaleDTO {
     private final String cashier;
     private final LocalDateTime time;
-    private final Cost cost;
-    private final ItemDTO lastAddedItem;
-    private final AddedItems saleRegister;
-    private final Cost change;
+    private final RegisteredItems registeredItems;
+    private final Amount change;
+    private final Amount runningTotal;
 
-    /**
-     *
-     * @param cashier
-     * @param cost
-     * @param lastAddedItem
-     * @param saleRegister
-     * @param change
-     */
-    public SaleDTO(String cashier, Cost cost, ItemDTO lastAddedItem, AddedItems saleRegister, Cost change) {
+    public SaleDTO(String cashier, RegisteredItems registeredItems, Amount runningTotal, Amount change) {
         this.cashier = cashier;
-        this.cost = cost;
-        this.lastAddedItem = lastAddedItem;
-        this.saleRegister = saleRegister;
-        this.time = LocalDateTime.now();
+        this.registeredItems = registeredItems;
+        this.runningTotal = runningTotal;
         this.change = change;
+        this.time = LocalDateTime.now();
     }
 
     /**
@@ -45,24 +36,13 @@ public final class SaleDTO {
      *
      * @return
      */
-    public Cost getCost() {return cost;}
+    public RegisteredItems getRegisteredItems(){return registeredItems;}
 
-    /**
-     *
-     * @return
-     */
-    public ItemDTO getLastAddedItem() { return lastAddedItem; }
+    public Amount getRunningTotal() {
+        return runningTotal;
+    }
 
-    /**
-     *
-     * @return
-     */
-    public AddedItems getCompletedSalesLog(){return saleRegister;}
-
-    /**
-     *
-     * @return
-     */
-    public Cost getChange(){return change;}
-
+    public Amount getChange() {
+        return change;
+    }
 }

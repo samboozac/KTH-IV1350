@@ -2,12 +2,12 @@ package model;
 
 import integration.Printer;
 import integration.SaleDTO;
+import util.Amount;
 
 public class Payment {
     private SaleDTO saleDTO;
-    private Cost totalCost;
     private Receipt receipt;
-    private double change;
+    private Amount change;
 
     /**
      *
@@ -24,8 +24,8 @@ public class Payment {
      * @param amount
      * @return
      */
-    public double pay(double amount) {
-        change = totalCost.getCost() - amount;
-        return change;
+    public Amount pay(Amount amount) {
+        saleDTO.getRunningTotal().subtract(amount);
+        return saleDTO.getRunningTotal();
     }
 }

@@ -2,6 +2,7 @@ package view;
 
 import controller.Controller;
 import integration.SaleDTO;
+import util.Amount;
 import util.ItemIdentifier;
 
 public class View {
@@ -22,10 +23,12 @@ public class View {
      */
     public void sampleExecution() {
         controller.startSale();
-        controller.addItem(new ItemIdentifier("1231231"), 2);
         System.out.println("Cashier starts new sale");
-        controller.enterDiscount("124938129348");
-        change = controller.pay(10);
-
+        saleDTO = controller.addItem(new ItemIdentifier("100"), 2);
+        saleDTO = controller.addItem(new ItemIdentifier("101"), 2);
+        saleDTO = controller.addItem(new ItemIdentifier("102"), 2);
+        System.out.println(saleDTO.getRunningTotal());
+        controller.signalLastItem(saleDTO);
+        controller.pay(new Amount(60));
     }
 }

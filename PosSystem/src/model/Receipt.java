@@ -1,6 +1,10 @@
 package model;
 
+import integration.ItemDTO;
 import integration.SaleDTO;
+
+import java.util.Iterator;
+import java.util.Map;
 
 public class Receipt {
     private SaleDTO saleDTO;
@@ -25,10 +29,18 @@ public class Receipt {
         sb.append("Cost: " + saleDTO.getCashier());
         sb.append(System.getProperty("line.separator"));
 
-        sb.append("LastAdded: " + saleDTO.getLastAddedItem());
+        sb.append("LastAdded: " + saleDTO.getRegisteredItems());
         sb.append(System.getProperty("line.separator"));
 
-        sb.append("AllItems: " + saleDTO.getCompletedSalesLog());
+        sb.append("Items: ");
+        sb.append(System.getProperty("line.separator"));
+
+        for (Map.Entry<ItemDTO, Integer> pair : saleDTO.getRegisteredItems().getMap().entrySet()) {
+            sb.append(pair.getKey().getName() + " Quantity: " + pair.getValue());
+            sb.append(System.getProperty("line.separator"));
+        }
+
+        sb.append("AllItems: " + saleDTO.getRegisteredItems());
         sb.append(System.getProperty("line.separator"));
 
         sb.append("Change: " + saleDTO.getChange());

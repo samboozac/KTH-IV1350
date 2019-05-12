@@ -1,23 +1,25 @@
 package model;
 import integration.ItemDTO;
 import integration.SaleDTO;
-import util.DiscountRule;
+import util.Amount;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Sale {
     private SaleDTO saleDTO;
     private ItemDTO lastAddedItem;
-    private AddedItems addedItems;
-    private Cost totalCost;
+    private RegisteredItems registeredItems;
+    private Amount runningTotal= new Amount(0);
     private Payment payment;
-    private Cost change;
+    private Amount change;
 
     /**
      *
      */
     public Sale() {
-        saleDTO = new SaleDTO("Jarmo", totalCost, lastAddedItem, addedItems, change);
-        payment = new Payment(saleDTO);
-        addedItems = new AddedItems();
+        registeredItems = new RegisteredItems();
     }
 
     /**
@@ -27,26 +29,29 @@ public class Sale {
      * @return
      */
     public SaleDTO addItem(ItemDTO itemDTO, int quantity){
-
-        if(addedItems.getAddedItems().containsKey(itemDTO)) {
-            addedItems.getAddedItems().put(itemDTO, addedItems.getAddedItems().get(itemDTO) + quantity);
-            System.out.println("Successfully added an item!");
-        } else {
-            addedItems.getAddedItems().put(itemDTO, quantity);
-        }
-        totalCost = addedItems.getRunningTotal();
+        System.out.println(itemDTO);
+        runningTotal.add(itemDTO.getPrice());
         lastAddedItem = itemDTO;
+
+        HashMap<ItemDTO, Integer> map = registeredItems.getMap();
+        Iterator<Map.Entry<ItemDTO, Integer>> entrySet = map.entrySet().iterator();
+        while (entrySet.hasNext()) {
+            Map.Entry<ItemDTO, Integer> pair = entrySet.next();
+            if(pair.getKey().equals(itemDTO)) {
+                //System.out.println("Successfully added " + pair.getValue() + "of " + pair.getKey());
+                map.put(pair.getKey(), pair.getValue() + quantity);
+                saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, change);
+                return saleDTO;
+            }
+        }
+        map.put(itemDTO, quantity);
+        saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, change);
         return saleDTO;
     }
 
-    /**
-     *
-     * @param discountRule
-     */
-    public void applyDiscount(DiscountRule discountRule) {
-        totalCost.applyDiscount(discountRule);
+    public void signalLastItem() {
+        payment = new Payment(saleDTO);
     }
-
     /**
      *
      */
@@ -57,7 +62,8 @@ public class Sale {
      * @param amount
      * @return
      */
-    public double pay(double amount){
-        return payment.pay(amount);
+    public Amount pay(Amount amount){
+
+        return change = payment.pay(amount);
     }
 }

@@ -1,11 +1,14 @@
 package integration;
 
-import model.Cost;
+import util.Amount;
+import util.VAT;
 
 public class ItemDTO {
     private final String name;
-    private final Cost price;
     private final String itemDescription;
+    private final Amount price;
+    private final VAT vat;
+
 
     /**
      *
@@ -13,10 +16,11 @@ public class ItemDTO {
      * @param itemDescription
      * @param price
      */
-    public ItemDTO(String name, String itemDescription, Cost price){
+    public ItemDTO(String name, String itemDescription, Amount price, VAT vat){
         this.name = name;
         this.itemDescription = itemDescription;
         this.price = price;
+        this.vat = vat;
     }
 
     /**
@@ -35,5 +39,14 @@ public class ItemDTO {
      *
      * @return
      */
-    public Cost getPrice(){return price;}
+    public Amount getPrice(){return price;}
+
+    /**
+     *
+     * @return
+     */
+    public VAT getVAT(){return vat;}
+    public String toString() {
+        return name + " " + itemDescription + " " + price + " " + vat;
+    }
 }
