@@ -11,6 +11,10 @@ public class Amount {
         this.amount = amount;
     }
 
+    public Amount(Amount amount, double quantity){
+        this.amount = amount.getValue() * quantity;
+    }
+
     /**
      *
      * @param amount
@@ -21,6 +25,10 @@ public class Amount {
 
     public void subtract(Amount amount) {
         this.amount = this.amount - amount.getValue();
+    }
+
+    public void setValue(Amount amount){
+        this.amount = amount.getValue();
     }
     /**
      *

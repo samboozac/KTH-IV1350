@@ -30,7 +30,10 @@ public class Sale {
      */
     public SaleDTO addItem(ItemDTO itemDTO, int quantity){
         System.out.println(itemDTO);
-        runningTotal.add(itemDTO.getPrice());
+        System.out.println("Quantity: " + quantity);
+        Amount linePrice = new Amount(itemDTO.getPrice(), quantity);
+        runningTotal.add(linePrice);
+        linePrice.setValue(new Amount(0));
         lastAddedItem = itemDTO;
 
         HashMap<ItemDTO, Integer> map = registeredItems.getMap();
