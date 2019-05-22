@@ -27,7 +27,9 @@ public class Controller  {
         this.externalAccounting = externalAccounting;
         dbHandler = new DbHandler(externalInventory, externalAccounting);
     }
-
+    /**
+    *
+    */
     public void startSale(){
         sale = new Sale();
     }
