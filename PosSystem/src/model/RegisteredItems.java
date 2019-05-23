@@ -3,6 +3,7 @@ package model;
 import integration.ItemDTO;
 import util.Amount;
 import util.RunningTotal;
+import util.VAT;
 
 import java.util.HashMap;
 
@@ -14,16 +15,6 @@ public class RegisteredItems {
      */
     public RegisteredItems(){
         register = new HashMap<>();
-    }
-
-    /**
-     *
-     * @param itemDTO
-     * @param quantity
-     * @return
-     */
-    public double addItem(ItemDTO itemDTO, int quantity){
-        return register.put(itemDTO, quantity);
     }
 
     /**

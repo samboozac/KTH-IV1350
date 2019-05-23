@@ -8,7 +8,6 @@ import util.ItemIdentifier;
 public class View {
     private SaleDTO saleDTO;
     private Controller controller;
-    private double change;
 
     /**
      *
@@ -29,6 +28,7 @@ public class View {
         saleDTO = controller.addItem(new ItemIdentifier("102"), 2);
         System.out.println(saleDTO.getRunningTotal());
         controller.signalLastItem(saleDTO);
-        controller.pay(new Amount(60));
+        controller.pay(new Amount(150));
+        controller.updateSystems();
     }
 }

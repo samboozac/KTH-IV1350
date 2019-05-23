@@ -23,7 +23,7 @@ public class Main {
         */
 
         createExternalSystems();
-        Controller controller = new Controller(printer, externalInventory, externalAccounting);
+        Controller controller = new Controller();
         View view = new View(controller);
         view.sampleExecution();
     }

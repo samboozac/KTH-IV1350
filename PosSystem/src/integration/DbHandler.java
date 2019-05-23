@@ -9,12 +9,10 @@ import java.util.Map;
 public class DbHandler {
     private ExternalInventory externalInventory;
     private ExternalAccounting externalAccounting;
-    private RegisteredItems registeredItems;
 
     public DbHandler(ExternalInventory externalInventory, ExternalAccounting externalAccounting){
         this.externalInventory = externalInventory;
         this.externalAccounting = externalAccounting;
-        registeredItems = new RegisteredItems();
     }
 
     /**
@@ -28,18 +26,14 @@ public class DbHandler {
         while (entrySet.hasNext()) {
             Map.Entry<ItemIdentifier, ItemDTO> pair = entrySet.next();
             if(pair.getKey().equals(itemIdentifier)) {
-                //System.out.println(pair.getValue() + "exists!");
                 return pair.getValue();
             }
         }
         return null;
     }
 
-    /**
-     *
-     * @param saleDTO
-     */
-    public void registerSalesInformation(SaleDTO saleDTO){
-        System.out.println("Sends file to external system");
+    public void updateExternalSystems(SaleDTO saleDTO) {
+        externalInventory.update(saleDTO);
+        externalAccounting.update(saleDTO);
     }
 }

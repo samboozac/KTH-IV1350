@@ -23,12 +23,15 @@ public class Amount {
         this.amount = this.amount + amount.getValue();
     }
 
-    public void subtract(Amount amount) {
-        this.amount = this.amount - amount.getValue();
+    public Amount subtract(Amount amount) {
+        return new Amount(this.amount - amount.getValue());
     }
 
     public void setValue(Amount amount){
         this.amount = amount.getValue();
+    }
+    public Amount negiate(){
+        return new Amount(this.amount*-1);
     }
     /**
      *

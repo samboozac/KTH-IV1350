@@ -1,13 +1,12 @@
 package integration;
 
 import util.Amount;
-import util.VAT;
 
 public class ItemDTO {
     private final String name;
     private final String itemDescription;
     private final Amount price;
-    private final VAT vat;
+    private final Amount vat;
 
 
     /**
@@ -16,7 +15,7 @@ public class ItemDTO {
      * @param itemDescription
      * @param price
      */
-    public ItemDTO(String name, String itemDescription, Amount price, VAT vat){
+    public ItemDTO(String name, String itemDescription, Amount price, Amount vat){
         this.name = name;
         this.itemDescription = itemDescription;
         this.price = price;
@@ -45,7 +44,7 @@ public class ItemDTO {
      *
      * @return
      */
-    public VAT getVAT(){return vat;}
+    public Amount getVAT(){return vat;}
     public String toString() {
         return name + " " + itemDescription + " " + price + " " + vat;
     }

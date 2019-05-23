@@ -12,8 +12,9 @@ public class ExternalAccounting {
      *
      * @param saleDTO
      */
-    public void updateAccounting(SaleDTO saleDTO) {
+    public void update(SaleDTO saleDTO) {
         salesLog.add(saleDTO);
+        System.out.println("Updated Accounting successfully!");
     }
 
     /**

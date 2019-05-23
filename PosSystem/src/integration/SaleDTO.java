@@ -1,23 +1,23 @@
 package integration;
 
+import model.Payment;
 import model.RegisteredItems;
 import util.Amount;
+import util.VAT;
 
 import java.time.LocalDateTime;
 
 public final class SaleDTO {
-    private final String cashier;
+    private final String cashier = "Jarmo";
     private final LocalDateTime time;
     private final RegisteredItems registeredItems;
-    private final Amount change;
     private final Amount runningTotal;
-
-    public SaleDTO(String cashier, RegisteredItems registeredItems, Amount runningTotal, Amount change) {
-        this.cashier = cashier;
+    private final Amount totalVAT;
+    public SaleDTO(String cashier, RegisteredItems registeredItems, Amount runningTotal, Amount totalVAT) {
         this.registeredItems = registeredItems;
         this.runningTotal = runningTotal;
-        this.change = change;
         this.time = LocalDateTime.now();
+        this.totalVAT = totalVAT;
     }
 
     /**
@@ -42,7 +42,7 @@ public final class SaleDTO {
         return runningTotal;
     }
 
-    public Amount getChange() {
-        return change;
+    public Amount getTotalVAT() {
+        return totalVAT;
     }
 }

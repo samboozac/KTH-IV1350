@@ -2,6 +2,7 @@ package model;
 import integration.ItemDTO;
 import integration.SaleDTO;
 import util.Amount;
+import util.VAT;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,9 +12,9 @@ public class Sale {
     private SaleDTO saleDTO;
     private ItemDTO lastAddedItem;
     private RegisteredItems registeredItems;
-    private Amount runningTotal= new Amount(0);
     private Payment payment;
-    private Amount change;
+    private Amount runningTotal= new Amount(0);
+    private Amount totalVAT = new Amount(0);
 
     /**
      *
@@ -41,32 +42,27 @@ public class Sale {
         while (entrySet.hasNext()) {
             Map.Entry<ItemDTO, Integer> pair = entrySet.next();
             if(pair.getKey().equals(itemDTO)) {
-                //System.out.println("Successfully added " + pair.getValue() + "of " + pair.getKey());
                 map.put(pair.getKey(), pair.getValue() + quantity);
-                saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, change);
+                totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
+                saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, totalVAT);
                 return saleDTO;
             }
         }
         map.put(itemDTO, quantity);
-        saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, change);
+        totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
+        saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, totalVAT);
         return saleDTO;
     }
 
     public void signalLastItem() {
-        payment = new Payment(saleDTO);
     }
-    /**
-     *
-     */
-    public void recordInitialSalesInfo(){}
-
     /**
      *
      * @param amount
      * @return
      */
-    public Amount pay(Amount amount){
-
-        return change = payment.pay(amount);
+    public void pay(Amount amount){
+        payment = new Payment(saleDTO);
+        payment.verify(amount);
     }
 }

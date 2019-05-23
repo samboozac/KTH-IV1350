@@ -6,8 +6,9 @@ import util.Amount;
 
 public class Payment {
     private SaleDTO saleDTO;
-    private Receipt receipt;
-    private Amount change;
+    private Printer printer;
+    private Amount amountPaid = new Amount(0);
+    private Amount currentChange;
 
     /**
      *
@@ -15,8 +16,7 @@ public class Payment {
      */
     public Payment(SaleDTO saleDTO) {
         this.saleDTO = saleDTO;
-        receipt = new Receipt(saleDTO);
-        Printer.printReciept(receipt);
+        printer = new Printer();
     }
 
     /**
@@ -24,8 +24,15 @@ public class Payment {
      * @param amount
      * @return
      */
-    public Amount pay(Amount amount) {
-        saleDTO.getRunningTotal().subtract(amount);
-        return saleDTO.getRunningTotal();
+    public void verify(Amount amount) {
+        amountPaid.add(amount);
+        currentChange = amountPaid.subtract(saleDTO.getRunningTotal());
+
+        if(amountPaid.getValue() >= saleDTO.getRunningTotal().getValue()) {
+            printer.printReciept(new Receipt(saleDTO, amountPaid, currentChange));
+        } else {
+            System.out.println("Payed amount: " + amountPaid);
+            System.out.println("missing amount: " + currentChange.negiate());
+        }
     }
 }
