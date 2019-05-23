@@ -1,9 +1,7 @@
 package integration;
 
-import model.Payment;
 import model.RegisteredItems;
 import util.Amount;
-import util.VAT;
 
 import java.time.LocalDateTime;
 

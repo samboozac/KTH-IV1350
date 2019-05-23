@@ -2,7 +2,6 @@ package model;
 import integration.ItemDTO;
 import integration.SaleDTO;
 import util.Amount;
-import util.VAT;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,8 +32,7 @@ public class Sale {
         System.out.println(itemDTO);
         System.out.println("Quantity: " + quantity);
         Amount linePrice = new Amount(itemDTO.getPrice(), quantity);
-        runningTotal.add(linePrice);
-        linePrice.setValue(new Amount(0));
+        runningTotal = runningTotal.add(linePrice);
         lastAddedItem = itemDTO;
 
         HashMap<ItemDTO, Integer> map = registeredItems.getMap();
@@ -43,13 +41,13 @@ public class Sale {
             Map.Entry<ItemDTO, Integer> pair = entrySet.next();
             if(pair.getKey().equals(itemDTO)) {
                 map.put(pair.getKey(), pair.getValue() + quantity);
-                totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
+                totalVAT = totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
                 saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, totalVAT);
                 return saleDTO;
             }
         }
         map.put(itemDTO, quantity);
-        totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
+        totalVAT = totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
         saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, totalVAT);
         return saleDTO;
     }

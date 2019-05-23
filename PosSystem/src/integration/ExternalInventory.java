@@ -2,8 +2,6 @@ package integration;
 
 import util.Amount;
 import util.ItemIdentifier;
-import util.VAT;
-
 import java.util.HashMap;
 
 public class ExternalInventory {

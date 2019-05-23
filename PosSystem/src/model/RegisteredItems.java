@@ -1,9 +1,6 @@
 package model;
 
 import integration.ItemDTO;
-import util.Amount;
-import util.RunningTotal;
-import util.VAT;
 
 import java.util.HashMap;
 

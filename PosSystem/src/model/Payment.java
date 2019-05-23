@@ -25,14 +25,14 @@ public class Payment {
      * @return
      */
     public void verify(Amount amount) {
-        amountPaid.add(amount);
+        amountPaid = amountPaid.add(amount);
         currentChange = amountPaid.subtract(saleDTO.getRunningTotal());
 
         if(amountPaid.getValue() >= saleDTO.getRunningTotal().getValue()) {
             printer.printReciept(new Receipt(saleDTO, amountPaid, currentChange));
         } else {
             System.out.println("Payed amount: " + amountPaid);
-            System.out.println("missing amount: " + currentChange.negiate());
+            System.out.println("missing amount: " + currentChange.negate());
         }
     }
 }
