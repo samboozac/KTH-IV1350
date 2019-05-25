@@ -1,5 +1,4 @@
 package integration;
-import model.RegisteredItems;
 import util.ItemIdentifier;
 
 import java.util.HashMap;
