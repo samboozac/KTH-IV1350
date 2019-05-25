@@ -8,12 +8,12 @@ public class ItemDTO {
     private final Amount price;
     private final Amount vat;
 
-
     /**
-     *
+     * Item placeholder for design purposes.
      * @param name
      * @param itemDescription
      * @param price
+     * @param vat
      */
     public ItemDTO(String name, String itemDescription, Amount price, Amount vat){
         this.name = name;
@@ -23,28 +23,33 @@ public class ItemDTO {
     }
 
     /**
-     *
+     * Retrive the item name.
      * @return
      */
     public String getName(){return name;}
 
     /**
-     *
+     * Retrieve the item description.
      * @return
      */
     public String getItemDescription(){return itemDescription;}
 
     /**
-     *
+     * Retrieve the item price.
      * @return
      */
     public Amount getPrice(){return price;}
 
     /**
-     *
+     * Retrieve the item VAT rate.
      * @return
      */
     public Amount getVAT(){return vat;}
+
+    /**
+     * String representation of the items.
+     * @return
+     */
     public String toString() {
         return name + " " + itemDescription + " " + price + " " + vat;
     }

@@ -3,8 +3,6 @@ package model;
 import integration.ItemDTO;
 import integration.SaleDTO;
 import util.Amount;
-
-import java.util.Iterator;
 import java.util.Map;
 
 public class Receipt {
@@ -13,7 +11,7 @@ public class Receipt {
     private Amount change;
 
     /**
-     *
+     * Constructor, only saving the parameters.
      * @param saleDTO
      */
     public Receipt(SaleDTO saleDTO, Amount amountPaid, Amount change){
@@ -23,7 +21,7 @@ public class Receipt {
     }
 
     /**
-     *
+     * String representation of the receipt.
      * @return
      */
     public String toString() {

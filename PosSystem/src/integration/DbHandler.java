@@ -15,7 +15,7 @@ public class DbHandler {
     }
 
     /**
-     *
+     * Logic checks after the ID in the 'database', returns the information if found else 'null'.
      * @param itemIdentifier
      * @return
      */
@@ -31,6 +31,10 @@ public class DbHandler {
         return null;
     }
 
+    /**
+     * Just a representation of the database updates (passed the complete saleDTO).
+     * @param saleDTO
+     */
     public void updateExternalSystems(SaleDTO saleDTO) {
         externalInventory.update(saleDTO);
         externalAccounting.update(saleDTO);

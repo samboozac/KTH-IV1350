@@ -12,7 +12,7 @@ public class ExternalInventory {
     }
 
     /**
-     * Adds the item catalog.
+     * Adds example data for the test-run. What represents an inventory database.
      */
     private void addItems() {
         itemCatalog.put(new ItemIdentifier("100"), new ItemDTO("banana", "yellow", new Amount(20), new Amount(12)));
@@ -21,12 +21,16 @@ public class ExternalInventory {
         itemCatalog.put(new ItemIdentifier("103"), new ItemDTO("Salmon", "pink", new Amount(100), new Amount(12)));
     }
 
+    /**
+     * returns the item catalog.
+     * @return
+     */
     public HashMap<ItemIdentifier, ItemDTO> getMap() {
         return itemCatalog;
     }
 
     /**
-     * We don't deal with the database
+     * Just a representation of updating the inventory database.
      * @param saleDTO
      */
     public void update(SaleDTO saleDTO) {

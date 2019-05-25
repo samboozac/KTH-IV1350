@@ -2,7 +2,6 @@ package model;
 
 import integration.ItemDTO;
 import util.Amount;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,13 +11,17 @@ public class RegisteredItems {
     private Amount runningTotal = new Amount(0);
 
     /**
-     *
+     * Constructor, creates the register HashMap.
      */
     public RegisteredItems(){
         register = new HashMap<>();
     }
 
-
+    /**
+     * Updates the ValueKey is the ItemDTO exists, else: create a new KeyValue pair.
+     * @param itemDTO
+     * @param quantity
+     */
     public void put(ItemDTO itemDTO, int quantity){
         System.out.println(itemDTO);
         System.out.println("Quantity: " + quantity);
@@ -36,11 +39,16 @@ public class RegisteredItems {
         map.put(itemDTO, quantity);
     }
 
+    /**
+     * Retrieves the running total amount.
+     * @return
+     */
     public Amount getRunningTotal() {
         return runningTotal;
     }
+
     /**
-     *
+     * Retrieves the HashMap.
      * @return
      */
     public HashMap<ItemDTO, Integer> getMap() { return register;}

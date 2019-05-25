@@ -9,7 +9,7 @@ public class ExternalAccounting {
     public ExternalAccounting(){}
 
     /**
-     *
+     * Just a representaiton to update the Accounting database.
      * @param saleDTO
      */
     public void update(SaleDTO saleDTO) {
@@ -18,7 +18,7 @@ public class ExternalAccounting {
     }
 
     /**
-     *
+     * How to retrieve all the sales logs for e.g printing out X or Z-report.
      * @return
      */
     public List<SaleDTO> getSaleLog(){

@@ -49,7 +49,6 @@ public class Amount {
     }
 
     /**
-     *
      * How the amount will be printed.
      * @return
      */

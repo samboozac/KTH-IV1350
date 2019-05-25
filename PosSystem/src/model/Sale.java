@@ -10,12 +10,15 @@ public class Sale {
     private Amount runningTotal = new Amount(0);
     private Amount totalVAT = new Amount(0);
 
+    /**
+     * Constructor, creates a structure to save the items in.
+     */
     public Sale() {
         registeredItems = new RegisteredItems();
     }
 
     /**
-     *
+     * Inserts the item/s and updates VAT, Rtotal and overwrites the current SaleDTO and returns it.
      * @param itemDTO
      * @param quantity
      * @return
@@ -29,7 +32,7 @@ public class Sale {
     }
 
     /**
-     *
+     * Creates a payment for the sale, and calls verify to make sure the payment is legit.
      * @param amount
      * @return
      */
@@ -38,6 +41,10 @@ public class Sale {
         payment.verify(amount);
     }
 
+    /**
+     * Retrieves the payment to accessed in e.g. view at a later stage.
+     * @return
+     */
     public Payment getPayment(){
         return payment;
     }

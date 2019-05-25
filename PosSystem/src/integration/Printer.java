@@ -3,11 +3,6 @@ package integration;
 import model.Receipt;
 
 public class Printer {
-    private SaleDTO saleDTO;
-
-    /**
-     * Empty constructor
-     */
     public Printer(){}
 
     /**

@@ -9,16 +9,12 @@ public class View {
     private SaleDTO saleDTO;
     private Controller controller;
 
-    /**
-     *
-     * @param controller
-     */
     public View(Controller controller){
         this.controller = controller;
     }
 
     /**
-     *
+     * To test the program (No GUI developed).GLHF!
      */
     public void sampleExecution() {
         controller.startSale();
