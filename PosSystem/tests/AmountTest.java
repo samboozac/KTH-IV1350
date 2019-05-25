@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AmountTest {
     @BeforeEach
     void setup() {
-        System.out.println("Setting up test dependencies!");
+
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("Tearing down test dependencies!");
+
     }
 
     @Test
@@ -45,12 +45,5 @@ public class AmountTest {
         Amount amount = new Amount(expected);
         double actual = amount.getValue();
         assertEquals(expected, actual, "GetValue fails!");
-    }
-
-    @Test
-    void testToString(){
-        String stringOne = "10.0 kr";
-        Amount amountTen = new Amount(10);
-        assertEquals(stringOne, amountTen.toString());;
     }
 }

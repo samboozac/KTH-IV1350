@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ItemIdentifierTest {
     @BeforeEach
     void setup() {
-        System.out.println("Setting up test dependencies!");
+
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("Tearing down test dependencies!");
+
     }
 
     @Test

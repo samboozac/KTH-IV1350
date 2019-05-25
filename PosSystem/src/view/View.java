@@ -23,11 +23,10 @@ public class View {
     public void sampleExecution() {
         controller.startSale();
         System.out.println("Cashier starts new sale");
-        saleDTO = controller.addItem(new ItemIdentifier("1001"), 2);
+        saleDTO = controller.addItem(new ItemIdentifier("100"), 2);
         saleDTO = controller.addItem(new ItemIdentifier("101"), 2);
         saleDTO = controller.addItem(new ItemIdentifier("102"), 2);
         System.out.println(saleDTO.getRunningTotal());
-        controller.signalLastItem(saleDTO);
         controller.pay(new Amount(150));
         controller.updateSystems();
     }

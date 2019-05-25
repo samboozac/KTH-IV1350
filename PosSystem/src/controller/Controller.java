@@ -28,14 +28,11 @@ public class Controller  {
     public SaleDTO addItem(ItemIdentifier itemIdentifier, int quantity) {
         itemDTO = dbHandler.getItemDTO(itemIdentifier);
         if(itemDTO == null) {
+            System.out.println("DOES NOT EXIST ----> Item: " + itemIdentifier.getValue() + " <---- DOES NOT EXIST");
             return null;
         } else {
             return saleDTO = sale.addItem(itemDTO, quantity);
         }
-    }
-
-    public void signalLastItem(SaleDTO saleDTO){
-        sale.signalLastItem();
     }
     public void pay(Amount amount) {
         sale.pay(amount);

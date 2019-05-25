@@ -56,7 +56,6 @@ public class Amount {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(amount);
-        sb.append("");
         return sb.toString();
     }
 }

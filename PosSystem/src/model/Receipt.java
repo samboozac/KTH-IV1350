@@ -16,7 +16,7 @@ public class Receipt {
      *
      * @param saleDTO
      */
-    protected Receipt(SaleDTO saleDTO, Amount amountPaid, Amount change){
+    public Receipt(SaleDTO saleDTO, Amount amountPaid, Amount change){
         this.saleDTO = saleDTO;
         this.amountPaid = amountPaid;
         this.change = change;

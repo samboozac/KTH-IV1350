@@ -14,7 +14,7 @@ public class Printer {
      * Print reciept to the standard output.
      * @param receipt
      */
-    public static void printReciept(Receipt receipt) {
+    public static void printReceipt(Receipt receipt) {
         System.out.println(receipt);
     }
 }

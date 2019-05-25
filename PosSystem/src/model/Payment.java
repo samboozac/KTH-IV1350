@@ -8,7 +8,7 @@ public class Payment {
     private SaleDTO saleDTO;
     private Printer printer;
     private Amount amountPaid = new Amount(0);
-    private Amount currentChange;
+    private Amount currentChange = new Amount(0);
 
     /**
      *
@@ -29,10 +29,14 @@ public class Payment {
         currentChange = amountPaid.subtract(saleDTO.getRunningTotal());
 
         if(amountPaid.getValue() >= saleDTO.getRunningTotal().getValue()) {
-            printer.printReciept(new Receipt(saleDTO, amountPaid, currentChange));
+            printer.printReceipt(new Receipt(saleDTO, amountPaid, currentChange));
         } else {
             System.out.println("Payed amount: " + amountPaid);
             System.out.println("missing amount: " + currentChange.negate());
         }
+    }
+
+    public Amount getAmountPaid() {
+        return amountPaid;
     }
 }
