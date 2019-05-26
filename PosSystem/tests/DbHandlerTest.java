@@ -1,5 +1,6 @@
 package tests;
 
+import controller.OperationFailedException;
 import integration.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,11 +26,16 @@ public class DbHandlerTest {
     }
 
     @Test
-    void testGetItemDTO(){
-        ItemIdentifier getBanana = new ItemIdentifier("100");
-        ItemDTO actual = dbhandler.getItemDTO(getBanana);
-        ItemDTO expected = new ItemDTO("banana", "yellow", new Amount(20), new Amount(12));
-        assertEquals(expected.getName(), actual.getName(), "getItemDTO() fails!");
+    void testGetItemDTO() throws OperationFailedException {
+        try {
+            ItemIdentifier getBanana = new ItemIdentifier("100");
+            ItemDTO actual = dbhandler.getItemDTO(getBanana);
+            ItemDTO expected = new ItemDTO("banana", "yellow", new Amount(20), new Amount(12));
+            assertEquals(expected.getName(), actual.getName(), "getItemDTO() fails!");
+        } catch (DatabaseConnectionFailureException | NoSuchItemIdentifierException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
+
     }
 
     @Test

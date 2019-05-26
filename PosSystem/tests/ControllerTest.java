@@ -1,6 +1,7 @@
 package tests;
 
 import controller.Controller;
+import controller.OperationFailedException;
 import integration.ItemDTO;
 import integration.SaleDTO;
 import org.junit.jupiter.api.AfterEach;
@@ -29,20 +30,28 @@ public class ControllerTest {
     }
 
     @Test
-    void testAddItem(){
+    void testAddItem() throws OperationFailedException {
         ItemDTO itemDTO = new ItemDTO("banana", "yellow", new Amount(20), new Amount(12));
-        SaleDTO saleDTO = controller.addItem(new ItemIdentifier("100"), 1);
-
-        Amount actual = saleDTO.getRegisteredItems().getRunningTotal();
-        Amount expected = itemDTO.getPrice();
-        assertEquals(expected.getValue(), actual.getValue(), "addItem() fails!");
+        try {
+            SaleDTO saleDTO = controller.addItem(new ItemIdentifier("100"), 1);
+            Amount actual = saleDTO.getRegisteredItems().getRunningTotal();
+            Amount expected = itemDTO.getPrice();
+            assertEquals(expected.getValue(), actual.getValue(), "addItem() fails!");
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
     }
 
     @Test
-    void testPay(){
+    void testPay() throws OperationFailedException{
         Amount amountToPay = new Amount(20);
-        controller.addItem(new ItemIdentifier("100"), 2);
-        controller.pay(amountToPay);
+        try {
+            controller.addItem(new ItemIdentifier("100"), 2);
+            controller.pay(amountToPay);
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
+
     }
 
     @Test

@@ -1,5 +1,7 @@
 package tests;
 
+import controller.OperationFailedException;
+import integration.DatabaseConnectionFailureException;
 import integration.ExternalInventory;
 import integration.ItemDTO;
 import integration.SaleDTO;
@@ -8,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import util.ItemIdentifier;
 
+import javax.swing.plaf.OptionPaneUI;
+import javax.xml.crypto.Data;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,24 +33,33 @@ public class ExternalInventoryTest {
     }
 
     @Test
-    void testAddItems(){
+    void testAddItems() throws OperationFailedException {
         ItemIdentifier expected = new ItemIdentifier("103");
         ItemIdentifier actual = null;
-        HashMap<ItemIdentifier, ItemDTO> map = externalInventory.getMap();
-        Iterator<Map.Entry<ItemIdentifier, ItemDTO>> entrySet = map.entrySet().iterator();
-        while (entrySet.hasNext()) {
-            Map.Entry<ItemIdentifier, ItemDTO> pair = entrySet.next();
-            if(pair.getKey().equals(expected)) {
-                actual = expected;
+        try {
+            HashMap<ItemIdentifier, ItemDTO> map = externalInventory.getMap();
+            Iterator<Map.Entry<ItemIdentifier, ItemDTO>> entrySet = map.entrySet().iterator();
+            while (entrySet.hasNext()) {
+                Map.Entry<ItemIdentifier, ItemDTO> pair = entrySet.next();
+                if(pair.getKey().equals(expected)) {
+                    actual = expected;
+                }
             }
+            assertEquals(expected, actual, "addItems() fails!");
+        } catch (DatabaseConnectionFailureException e) {
+            throw new OperationFailedException(e.getMessage());
         }
-        assertEquals(expected, actual, "addItems() fails!");
+
     }
 
     @Test
-    void testGetMap(){
-        HashMap<ItemIdentifier, ItemDTO> ic = externalInventory.getMap();
-        assertNotNull(ic);
+    void testGetMap() throws OperationFailedException{
+        try {
+            HashMap<ItemIdentifier, ItemDTO> ic = externalInventory.getMap();
+            assertNotNull(ic);
+        } catch (DatabaseConnectionFailureException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
     }
 
     @Test

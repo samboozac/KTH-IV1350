@@ -1,5 +1,6 @@
 package tests;
 
+import controller.OperationFailedException;
 import integration.ItemDTO;
 import integration.SaleDTO;
 import model.RegisteredItems;
@@ -18,14 +19,19 @@ public class SaleDtoTest {
     private SaleDTO saleDTO;
 
     @BeforeEach
-    void setup() {
+    void setup() throws OperationFailedException {
         cashier = "Jarmo";
         registeredItems = new RegisteredItems();
         runningTotal = new Amount(100);
         totalVAT = new Amount(12);
 
         ItemDTO itemDTO = new ItemDTO("Banan", "Gul", new Amount(50), new Amount(6));
-        registeredItems.put(itemDTO, 2);
+        try {
+            registeredItems.put(itemDTO, 2);
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
+
 
         saleDTO = new SaleDTO(cashier, registeredItems, runningTotal, totalVAT);
     }

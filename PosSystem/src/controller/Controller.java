@@ -31,13 +31,12 @@ public class Controller  {
      * @param quantity
      * @return
      */
-    public SaleDTO addItem(ItemIdentifier itemIdentifier, int quantity) {
-        itemDTO = dbHandler.getItemDTO(itemIdentifier);
-        if(itemDTO == null) {
-            System.out.println("DOES NOT EXIST ----> Item: " + itemIdentifier.getValue() + " <---- DOES NOT EXIST");
-            return null;
-        } else {
+    public SaleDTO addItem(ItemIdentifier itemIdentifier, int quantity) throws OperationFailedException {
+        try {
+            itemDTO = dbHandler.getItemDTO(itemIdentifier);
             return saleDTO = sale.addItem(itemDTO, quantity);
+        } catch (DatabaseConnectionFailureException | NoSuchItemIdentifierException e) {
+            throw new OperationFailedException(e.getMessage());
         }
     }
 

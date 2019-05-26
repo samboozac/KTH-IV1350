@@ -19,8 +19,11 @@ public class DbHandler {
      * @param itemIdentifier
      * @return
      */
-    public ItemDTO getItemDTO(ItemIdentifier itemIdentifier) {
+    public ItemDTO getItemDTO(ItemIdentifier itemIdentifier) throws NoSuchItemIdentifierException, DatabaseConnectionFailureException{
         HashMap<ItemIdentifier, ItemDTO> map = externalInventory.getMap();
+        if (map == null) {
+            throw new DatabaseConnectionFailureException("Could not connect to Database..");
+        }
         Iterator<Map.Entry<ItemIdentifier, ItemDTO>> entrySet = map.entrySet().iterator();
         while (entrySet.hasNext()) {
             Map.Entry<ItemIdentifier, ItemDTO> pair = entrySet.next();
@@ -28,7 +31,7 @@ public class DbHandler {
                 return pair.getValue();
             }
         }
-        return null;
+        throw new NoSuchItemIdentifierException("Item: " + itemIdentifier + " could not be found in the database");
     }
 
     /**

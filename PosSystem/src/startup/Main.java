@@ -1,6 +1,7 @@
 package startup;
 
 import controller.Controller;
+import view.ErrorMessageHandler;
 import view.View;
 
 public class Main {
@@ -11,7 +12,8 @@ public class Main {
      */
     public static void main(String[] args) {
         Controller controller = new Controller();
-        View view = new View(controller);
+        ErrorMessageHandler errorMessageHandler = new ErrorMessageHandler();
+        View view = new View(controller, errorMessageHandler);
         view.sampleExecution();
     }
 }

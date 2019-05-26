@@ -1,5 +1,6 @@
 package model;
 
+import controller.OperationFailedException;
 import integration.ItemDTO;
 import util.Amount;
 import java.util.HashMap;
@@ -22,22 +23,18 @@ public class RegisteredItems {
      * @param itemDTO
      * @param quantity
      */
-    public void put(ItemDTO itemDTO, int quantity){
+    public void put(ItemDTO itemDTO, int quantity) throws OperationFailedException {
         System.out.print("Added! -----> ");
         System.out.print(itemDTO);
         System.out.println("x" + quantity);
         Amount linePrice = new Amount(itemDTO.getPrice(), quantity);
         runningTotal = runningTotal.add(linePrice);
-
         HashMap<ItemDTO, Integer> map = register;
-        Iterator<Map.Entry<ItemDTO, Integer>> entrySet = map.entrySet().iterator();
-        while (entrySet.hasNext()) {
-            Map.Entry<ItemDTO, Integer> pair = entrySet.next();
-            if(pair.getKey().equals(itemDTO)) {
-                map.put(pair.getKey(), pair.getValue() + quantity);
-            }
+        Integer currentValue = map.get(itemDTO);
+        if(currentValue == null) {
+            currentValue = 0;
         }
-        map.put(itemDTO, quantity);
+        map.put(itemDTO, quantity + currentValue);
     }
 
     /**

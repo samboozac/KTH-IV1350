@@ -1,5 +1,6 @@
 package tests;
 
+import controller.OperationFailedException;
 import integration.ItemDTO;
 import model.RegisteredItems;
 import org.junit.jupiter.api.AfterEach;
@@ -26,9 +27,14 @@ public class RegisteredItemsTest {
     }
 
     @Test
-    void testPut(){
+    void testPut() throws OperationFailedException {
         ItemDTO itemDTO = new ItemDTO("100", "Gul", new Amount(10), new Amount(12));
-        registeredItems.put(itemDTO, 1);
+        try {
+            registeredItems.put(itemDTO, 1);
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
+
 
         boolean expected = true;
         boolean actual = registeredItems.getMap().containsKey(itemDTO);
@@ -36,9 +42,14 @@ public class RegisteredItemsTest {
     }
 
     @Test
-    void testGetRunningTotal(){
+    void testGetRunningTotal() throws OperationFailedException{
         ItemDTO itemDTO = new ItemDTO("100", "Gul", new Amount(10), new Amount(12));
-        registeredItems.put(itemDTO, 1);
+        try {
+            registeredItems.put(itemDTO, 1);
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
+
 
         Amount expected = itemDTO.getPrice();
         Amount actual = registeredItems.getRunningTotal();
@@ -46,10 +57,15 @@ public class RegisteredItemsTest {
     }
 
     @Test
-    void testGetMap(){
+    void testGetMap() throws OperationFailedException{
         // Setting up Actual
         ItemDTO itemDTO = new ItemDTO("100", "Gul", new Amount(10), new Amount(12));
-        registeredItems.put(itemDTO, 1);
+        try {
+            registeredItems.put(itemDTO, 1);
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
+
 
         // Creating expected
         HashMap<ItemDTO, Integer> register = new HashMap<>();

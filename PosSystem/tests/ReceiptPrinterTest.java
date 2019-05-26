@@ -1,5 +1,6 @@
 package tests;
 
+import controller.OperationFailedException;
 import integration.ItemDTO;
 import integration.Printer;
 import integration.SaleDTO;
@@ -14,7 +15,7 @@ public class ReceiptPrinterTest {
     private Receipt receipt;
     private Printer printer;
     @BeforeEach
-    void setup() {
+    void setup() throws OperationFailedException {
         // Sale parameters
         String cashier  = "Jarmo";
         Amount runningTotal = new Amount(12);
@@ -22,7 +23,11 @@ public class ReceiptPrinterTest {
         RegisteredItems registeredItems = new RegisteredItems();
         // Add something
         ItemDTO itemDTO = new ItemDTO("banan", "yellow", new Amount(10), new Amount(12));
-        registeredItems.put(itemDTO, 2);
+        try {
+            registeredItems.put(itemDTO, 2);
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
         // Receipt parameters
         Amount paidAmount = new Amount(40);
         Amount changeAmount = new Amount(16);

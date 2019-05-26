@@ -25,7 +25,7 @@ public class ExternalInventory {
      * returns the item catalog.
      * @return
      */
-    public HashMap<ItemIdentifier, ItemDTO> getMap() {
+    public HashMap<ItemIdentifier, ItemDTO> getMap() throws DatabaseConnectionFailureException{
         return itemCatalog;
     }
 

@@ -1,4 +1,5 @@
 package model;
+import controller.OperationFailedException;
 import integration.ItemDTO;
 import integration.SaleDTO;
 import util.Amount;
@@ -23,12 +24,17 @@ public class Sale {
      * @param quantity
      * @return
      */
-    public SaleDTO addItem(ItemDTO itemDTO, int quantity){
-        registeredItems.put(itemDTO, quantity);
-        totalVAT = totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
-        runningTotal = registeredItems.getRunningTotal();
-        saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, totalVAT);
-        return saleDTO;
+    public SaleDTO addItem(ItemDTO itemDTO, int quantity) throws OperationFailedException {
+        try {
+            registeredItems.put(itemDTO, quantity);
+            totalVAT = totalVAT.add(new Amount(itemDTO.getPrice().getValue()*quantity/100*itemDTO.getVAT().getValue()));
+            runningTotal = registeredItems.getRunningTotal();
+            saleDTO = new SaleDTO("Jarmo", registeredItems, runningTotal, totalVAT);
+            return saleDTO;
+        } catch (OperationFailedException e){
+            throw new OperationFailedException(e.getMessage());
+        }
+
     }
 
     /**

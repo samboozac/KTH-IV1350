@@ -1,5 +1,6 @@
 package tests;
 
+import controller.OperationFailedException;
 import integration.ItemDTO;
 import integration.SaleDTO;
 import model.Sale;
@@ -15,10 +16,15 @@ public class SaleTest {
     private ItemDTO itemDTO;
 
     @BeforeEach
-    void setup() {
+    void setup() throws OperationFailedException {
         sale = new Sale();
         itemDTO = new ItemDTO("1001", "Gul", new Amount(20), new Amount(12));
-        sale.addItem(itemDTO, 2);
+        try {
+            sale.addItem(itemDTO, 2);
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
+
     }
 
     @AfterEach
@@ -28,11 +34,15 @@ public class SaleTest {
     }
 
     @Test
-    void testAddItem(){
-        saleDTO = sale.addItem(itemDTO, 2);
-        boolean actual = saleDTO.getRegisteredItems().getMap().containsKey(itemDTO);
-        boolean expected = true;
-        assertEquals(expected, actual, "addItem() fails!");
+    void testAddItem() throws OperationFailedException{
+        try {
+            saleDTO = sale.addItem(itemDTO, 2);
+            boolean actual = saleDTO.getRegisteredItems().getMap().containsKey(itemDTO);
+            boolean expected = true;
+            assertEquals(expected, actual, "addItem() fails!");
+        } catch (OperationFailedException e) {
+            throw new OperationFailedException(e.getMessage());
+        }
     }
 
     @Test
