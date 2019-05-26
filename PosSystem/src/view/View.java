@@ -24,6 +24,6 @@ public class View {
         saleDTO = controller.addItem(new ItemIdentifier("102"), 2);
         System.out.println(saleDTO.getRunningTotal());
         controller.pay(new Amount(150));
-        controller.updateSystems();
+        controller.endSale();
     }
 }

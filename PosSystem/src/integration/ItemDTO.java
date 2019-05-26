@@ -51,6 +51,13 @@ public class ItemDTO {
      * @return
      */
     public String toString() {
-        return name + " " + itemDescription + " " + price + " " + vat;
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        sb.append(name + " ");
+        sb.append(itemDescription + " ");
+        sb.append(price + " ");
+        sb.append(vat + " ");
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -47,6 +47,6 @@ public class ControllerTest {
 
     @Test
     void testUpdateSystems(){
-        controller.updateSystems();
+        controller.endSale();
     }
 }

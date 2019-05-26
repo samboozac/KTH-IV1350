@@ -23,8 +23,9 @@ public class RegisteredItems {
      * @param quantity
      */
     public void put(ItemDTO itemDTO, int quantity){
-        System.out.println(itemDTO);
-        System.out.println("Quantity: " + quantity);
+        System.out.print("Added! -----> ");
+        System.out.print(itemDTO);
+        System.out.println("x" + quantity);
         Amount linePrice = new Amount(itemDTO.getPrice(), quantity);
         runningTotal = runningTotal.add(linePrice);
 

@@ -52,7 +52,11 @@ public class Controller  {
     /**
      * How we would update the database after a finished sale.
      */
-    public void updateSystems(){
+    public void endSale(){
         dbHandler.updateExternalSystems(saleDTO);
+        sale = null;
+        saleDTO = null;
+        itemDTO = null;
+        System.out.println("Sale ended, Logs updated!");
     }
 }
