@@ -32,4 +32,12 @@ public class ItemIdentifier {
     public String getValue() {
         return itemIdentifier;
     }
+
+    /**
+     * String representation of the ItemIdentifier.
+     * @return
+     */
+    public String toString(){
+        return itemIdentifier;
+    }
 }

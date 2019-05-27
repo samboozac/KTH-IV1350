@@ -26,6 +26,9 @@ public class ExternalInventory {
      * @return
      */
     public HashMap<ItemIdentifier, ItemDTO> getMap() throws DatabaseConnectionFailureException{
+        if(itemCatalog == null) {
+            throw new DatabaseConnectionFailureException("No connection to database!");
+        }
         return itemCatalog;
     }
 

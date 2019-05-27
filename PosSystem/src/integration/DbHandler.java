@@ -18,6 +18,8 @@ public class DbHandler {
      * Logic checks after the ID in the 'database', returns the information if found else 'null'.
      * @param itemIdentifier
      * @return
+     * @throws NoSuchItemIdentifierException
+     * @throws DatabaseConnectionFailureException
      */
     public ItemDTO getItemDTO(ItemIdentifier itemIdentifier) throws NoSuchItemIdentifierException, DatabaseConnectionFailureException{
         HashMap<ItemIdentifier, ItemDTO> map = externalInventory.getMap();
