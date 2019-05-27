@@ -26,6 +26,10 @@ public class RegisteredItemsTest {
 
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testPut() throws OperationFailedException {
         ItemDTO itemDTO = new ItemDTO("100", "Gul", new Amount(10), new Amount(12));
@@ -41,6 +45,10 @@ public class RegisteredItemsTest {
         assertEquals(expected, actual, "put() fails!");
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testGetRunningTotal() throws OperationFailedException{
         ItemDTO itemDTO = new ItemDTO("100", "Gul", new Amount(10), new Amount(12));
@@ -56,6 +64,10 @@ public class RegisteredItemsTest {
         assertEquals(expected.getValue(), actual.getValue(), "put() fails!");
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testGetMap() throws OperationFailedException{
         // Setting up Actual

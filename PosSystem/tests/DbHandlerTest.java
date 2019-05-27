@@ -25,6 +25,10 @@ public class DbHandlerTest {
         dbhandler = null;
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testGetItemDTO() throws OperationFailedException {
         try {

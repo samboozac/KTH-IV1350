@@ -15,6 +15,10 @@ public class SaleTest {
     private Sale sale;
     private ItemDTO itemDTO;
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @BeforeEach
     void setup() throws OperationFailedException {
         sale = new Sale();
@@ -33,6 +37,10 @@ public class SaleTest {
         itemDTO = null;
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testAddItem() throws OperationFailedException{
         try {

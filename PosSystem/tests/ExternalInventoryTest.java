@@ -32,6 +32,10 @@ public class ExternalInventoryTest {
         externalInventory = null;
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testAddItems() throws OperationFailedException {
         ItemIdentifier expected = new ItemIdentifier("103");
@@ -52,6 +56,10 @@ public class ExternalInventoryTest {
 
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testGetMap() throws OperationFailedException{
         try {

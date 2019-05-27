@@ -34,6 +34,7 @@ public class View {
             saleDTO = controller.addItem(itemIdentifier, quantity);
         } catch (OperationFailedException e){
             errorMessageHandler.showErrorMsg(e.getMessage());
+            errorMessageHandler.logErrorMsg(e);
         }
 
     }

@@ -14,6 +14,11 @@ import util.Amount;
 public class ReceiptPrinterTest {
     private Receipt receipt;
     private Printer printer;
+
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @BeforeEach
     void setup() throws OperationFailedException {
         // Sale parameters

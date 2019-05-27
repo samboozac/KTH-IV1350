@@ -29,6 +29,10 @@ public class ControllerTest {
         controller.startSale();
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testAddItem() throws OperationFailedException {
         ItemDTO itemDTO = new ItemDTO("banana", "yellow", new Amount(20), new Amount(12));
@@ -42,6 +46,10 @@ public class ControllerTest {
         }
     }
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @Test
     void testPay() throws OperationFailedException{
         Amount amountToPay = new Amount(20);

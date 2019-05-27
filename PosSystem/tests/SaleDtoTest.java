@@ -18,6 +18,10 @@ public class SaleDtoTest {
     private Amount totalVAT;
     private SaleDTO saleDTO;
 
+    /**
+     *
+     * @throws OperationFailedException
+     */
     @BeforeEach
     void setup() throws OperationFailedException {
         cashier = "Jarmo";
