@@ -67,6 +67,10 @@ public class Controller  {
         System.out.println("Sale ended, Logs updated!");
     }
 
+    /**
+     * Adds the passed observer to the observer list.
+     * @param observer
+     */
     public void addTotalRevenueObserver(TotalRevenueObserver observer){
         revenueObservers.add(observer);
     }

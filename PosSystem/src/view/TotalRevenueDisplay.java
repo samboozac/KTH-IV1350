@@ -8,15 +8,18 @@ public class TotalRevenueDisplay implements TotalRevenueObserver {
     public TotalRevenueDisplay (){}
 
     /**
-     * Passes the updated information to the
+     * Saves the updated state information and calls the print function.
      * @param totalSalePrice
      */
     public void newTotalSalePrice(Amount totalSalePrice) {
-        printCurrentState(totalSalePrice);
+        totalRevenue = totalRevenue.add(totalSalePrice);
+        printCurrentState();
     }
 
-    private void printCurrentState(Amount salePrice) {
-        totalRevenue = totalRevenue.add(salePrice);
+    /**
+     * Formatting the string representation to display the total revenue.
+     */
+    private void printCurrentState() {
         System.out.println("-----------> Total Revenue: " + totalRevenue + " <-----------" + "\n \n");
     }
 }

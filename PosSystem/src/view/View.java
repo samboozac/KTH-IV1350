@@ -11,6 +11,11 @@ public class View {
     private Controller controller;
     private ErrorMessageHandler errorMessageHandler;
 
+    /**
+     * Sets the instance variables and creates a new observer of the total revenue.
+     * @param controller
+     * @param errorMessageHandler
+     */
     public View(Controller controller, ErrorMessageHandler errorMessageHandler){
         this.controller = controller;
         this.errorMessageHandler = errorMessageHandler;

@@ -11,6 +11,14 @@ public final class SaleDTO {
     private final Amount runningTotal;
     private final Amount totalVAT;
 
+    /**
+     *
+     * Creates new great Sales!
+     * @param cashier
+     * @param registeredItems
+     * @param runningTotal
+     * @param totalVAT
+     */
     public SaleDTO(String cashier, RegisteredItems registeredItems, Amount runningTotal, Amount totalVAT) {
         this.registeredItems = registeredItems;
         this.runningTotal = runningTotal;

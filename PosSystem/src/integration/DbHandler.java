@@ -9,6 +9,11 @@ public class DbHandler {
     private ExternalInventory externalInventory;
     private ExternalAccounting externalAccounting;
 
+    /**
+     *
+     * @param externalInventory
+     * @param externalAccounting
+     */
     public DbHandler(ExternalInventory externalInventory, ExternalAccounting externalAccounting){
         this.externalInventory = externalInventory;
         this.externalAccounting = externalAccounting;
