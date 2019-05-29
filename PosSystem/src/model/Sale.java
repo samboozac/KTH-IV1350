@@ -59,15 +59,24 @@ public class Sale {
         return payment;
     }
 
+    /**
+     * Calls the notifyObservers to update the revenue.
+     */
     public void  endSale(){
         notifyObservers();
     }
 
+    /**
+     * Adds the totalRevenue observers.
+     * @param revenueObservers
+     */
     public void addTotalRevenueObservers(List<TotalRevenueObserver> revenueObservers) {
         this.revenueObservers.addAll(revenueObservers);
     }
 
-
+    /**
+     * Loops through and calls the added observers with the changed state information.
+     */
     private void notifyObservers() {
         for(TotalRevenueObserver observer : revenueObservers) {
             observer.newTotalSalePrice(runningTotal);

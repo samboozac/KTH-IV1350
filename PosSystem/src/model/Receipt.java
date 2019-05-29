@@ -36,17 +36,10 @@ public class Receipt {
         sb.append("--- Cashier: " + saleDTO.getCashier());
         sb.append(System.getProperty("line.separator"));
 
-        sb.append("------------- Items -------------");
-        sb.append(System.getProperty("line.separator"));
-
         for (Map.Entry<ItemDTO, Integer> pair : saleDTO.getRegisteredItems().getMap().entrySet()) {
-            sb.append("--- " + pair.getKey().getName() + ", " + pair.getValue() + ", " + pair.getKey().getPrice().getValue()*pair.getValue() + "kr" + ", " + "(VAT: " + (pair.getKey().getPrice().getValue()/100) * pair.getKey().getVAT().getValue() + ")");
+            sb.append("--- " + pair.getKey().getName() + ", " + pair.getValue() + ", " + pair.getKey().getPrice().getValue()*pair.getValue() + "kr" + ", " + "(VAT: " + String.format("%.2f", (pair.getKey().getPrice().getValue()/100) * pair.getKey().getVAT().getValue()) + ")");
             sb.append(System.getProperty("line.separator"));
         }
-        sb.append("---------------------------------");
-        sb.append(System.getProperty("line.separator"));
-        sb.append("---------------------------------");
-        sb.append(System.getProperty("line.separator"));
 
         sb.append("--- Cost: " + saleDTO.getRunningTotal());
         sb.append(System.getProperty("line.separator"));
@@ -57,7 +50,7 @@ public class Receipt {
         sb.append("--- Change: " + change);
         sb.append(System.getProperty("line.separator"));
 
-        sb.append("--- totalVAT: " + saleDTO.getTotalVAT());
+        sb.append("--- totalVAT: " + String.format("%.2f", saleDTO.getTotalVAT().getValue()));
         sb.append(System.getProperty("line.separator"));
 
         sb.append("--- Time: " + saleDTO.getTime());

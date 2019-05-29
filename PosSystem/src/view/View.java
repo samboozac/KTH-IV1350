@@ -14,7 +14,7 @@ public class View {
     public View(Controller controller, ErrorMessageHandler errorMessageHandler){
         this.controller = controller;
         this.errorMessageHandler = errorMessageHandler;
-        controller.addTotalRevenueObserver(new DisplayTotalRevenueView());
+        controller.addTotalRevenueObserver(new TotalRevenueDisplay());
     }
 
     /**
