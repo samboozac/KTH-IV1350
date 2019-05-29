@@ -4,12 +4,16 @@ import integration.ItemDTO;
 import integration.SaleDTO;
 import util.Amount;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sale {
     private SaleDTO saleDTO;
     private RegisteredItems registeredItems;
     private Payment payment;
     private Amount runningTotal = new Amount(0);
     private Amount totalVAT = new Amount(0);
+    private List<TotalRevenueObserver> revenueObservers = new ArrayList<>();
 
     /**
      * Constructor, creates a structure to save the items in.
@@ -53,5 +57,20 @@ public class Sale {
      */
     public Payment getPayment(){
         return payment;
+    }
+
+    public void  endSale(){
+        notifyObservers();
+    }
+
+    public void addTotalRevenueObservers(List<TotalRevenueObserver> revenueObservers) {
+        this.revenueObservers.addAll(revenueObservers);
+    }
+
+
+    private void notifyObservers() {
+        for(TotalRevenueObserver observer : revenueObservers) {
+            observer.newTotalSalePrice(runningTotal);
+        }
     }
 }

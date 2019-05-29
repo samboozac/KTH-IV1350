@@ -9,6 +9,8 @@ import util.Amount;
 import util.ItemIdentifier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class DbHandlerTest {
     private DbHandler dbhandler;
@@ -38,6 +40,19 @@ public class DbHandlerTest {
             assertEquals(expected.getName(), actual.getName(), "getItemDTO() fails!");
         } catch (DatabaseConnectionFailureException | NoSuchItemIdentifierException e) {
             throw new OperationFailedException(e.getMessage());
+        }
+
+    }
+
+    @Test
+    void  testItemDoesNotExist() throws OperationFailedException {
+        ItemIdentifier getBanana = new ItemIdentifier("1001");
+        try {
+            ItemDTO actual = dbhandler.getItemDTO(getBanana);
+            ItemDTO expected = new ItemDTO("banana", "yellow", new Amount(20), new Amount(12));
+            fail("Could not find the ID");
+        } catch (DatabaseConnectionFailureException | NoSuchItemIdentifierException e) {
+            assertTrue(e.getMessage().contains(getBanana.toString()), "Wrong exception message");
         }
 
     }

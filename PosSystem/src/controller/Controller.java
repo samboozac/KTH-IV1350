@@ -2,15 +2,19 @@ package controller;
 
 import integration.*;
 import model.Sale;
+import model.TotalRevenueObserver;
 import util.Amount;
 import util.ItemIdentifier;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller  {
     private Sale sale;
     private DbHandler dbHandler;
     private ItemDTO itemDTO;
     private SaleDTO saleDTO;
-
+    private List<TotalRevenueObserver> revenueObservers = new ArrayList<>();
     /**
      *  Constructor, creates a DbHandler which handles the external systems.
      */
@@ -53,9 +57,17 @@ public class Controller  {
      */
     public void endSale(){
         dbHandler.updateExternalSystems(saleDTO);
+        sale.addTotalRevenueObservers(revenueObservers);
+        sale.endSale();
+
         sale = null;
         saleDTO = null;
         itemDTO = null;
+
         System.out.println("Sale ended, Logs updated!");
+    }
+
+    public void addTotalRevenueObserver(TotalRevenueObserver observer){
+        revenueObservers.add(observer);
     }
 }

@@ -14,6 +14,7 @@ public class View {
     public View(Controller controller, ErrorMessageHandler errorMessageHandler){
         this.controller = controller;
         this.errorMessageHandler = errorMessageHandler;
+        controller.addTotalRevenueObserver(new DisplayTotalRevenueView());
     }
 
     /**
@@ -62,6 +63,11 @@ public class View {
         addItem(new ItemIdentifier("101"), 2);
         addItem(new ItemIdentifier("102"), 2);
         pay(new Amount(200));
+        endSale();
+
+        startSale();
+        addItem(new ItemIdentifier("100"), 1);
+        pay(new Amount(20));
         endSale();
     }
 }
