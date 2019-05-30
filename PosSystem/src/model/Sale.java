@@ -62,7 +62,7 @@ public class Sale {
     /**
      * Calls the notifyObservers to update the revenue.
      */
-    public void  endSale(){
+    public void endSale(){
         notifyObservers();
     }
 

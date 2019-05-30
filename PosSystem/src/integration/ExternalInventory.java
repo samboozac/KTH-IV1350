@@ -22,6 +22,12 @@ public class ExternalInventory {
     }
 
     /**
+     * Just for the testing..
+     */
+    public void setMapNull() {
+        itemCatalog = null;
+    }
+    /**
      * returns the item catalog.
      * @return
      */
